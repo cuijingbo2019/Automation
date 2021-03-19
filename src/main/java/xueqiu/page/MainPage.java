@@ -15,41 +15,33 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/3/16 17:52
  */
 public class MainPage {
-    public static AppiumDriver driver;
+    private AndroidDriver driver;
 
-    @BeforeAll
-    public  static void  setup()  {
-        try {
-            DesiredCapabilities caps=new DesiredCapabilities();
-            caps.setCapability("platformName","Android");
-            caps.setCapability("deviceName","appium");
-            caps.setCapability("appPackage","com.xueqiu.android");
-            caps.setCapability("appActivity",".view.WelcomeActivityAlias");
-            caps.setCapability("noReset","True"); //不重置应用状态
-            //caps.setCapability("fillRest","True");//完全重置
-            driver=new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"),caps);//appium端口号
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-    @AfterAll
-    public static void exit(){
-        driver.quit();
+    public MainPage() throws MalformedURLException {
+        DesiredCapabilities caps=new DesiredCapabilities();
+        caps.setCapability("platformName","Android");
+        caps.setCapability("deviceName","appium");
+        caps.setCapability("appPackage","com.xueqiu.android");
+        caps.setCapability("appActivity",".view.WelcomeActivityAlias");
+        caps.setCapability("noReset","True"); //不重置应用状态
+        //caps.setCapability("fillRest","True");//完全重置
+        driver=new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"),caps);//appium端口号
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
 
     //进入搜索页
     public SearchPage toSearch(){
         driver.findElementById("com.xueqiu.android:id/home_search").click();
-        return new SearchPage();
+        return new SearchPage(driver);
     }
-    //进入行情页
-    public void  toStock(){
 
+
+
+    //进入行情页
+    public StockPage toStock(){
+        driver.findElementByXPath("(//*[@resource-id='com.xueqiu.android:id/tab_icon'])[2]").click();
+        return new StockPage(driver);
     }
 
 }

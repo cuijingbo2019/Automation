@@ -1,4 +1,4 @@
-package xueqiu;
+package xueqiu.page;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import xueqiu.page.MainPage;
 import xueqiu.page.SearchPage;
 
+import java.net.MalformedURLException;
+
 /**
  * @author cuijingbo
  * @date 2021/3/16 17:58
@@ -16,11 +18,10 @@ class SearchPageTest {
     static MainPage mainPage;
     static SearchPage searchPage;
     @BeforeAll
-    static  void  beforAll(){
+    static  void  beforAll() throws MalformedURLException {
         searchPage=new  MainPage().toSearch();
     }
 
-    @Test
     @ParameterizedTest
     @CsvSource({
             "alibaba, 阿里巴巴",
