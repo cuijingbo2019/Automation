@@ -1,4 +1,4 @@
-package wework.page;
+package web_wework.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;

@@ -1,10 +1,10 @@
-package wework;
+package web_wework;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import wework.page.ContactPage;
-import wework.page.MainPage;
+import web_wework.page.ContactPage;
+import web_wework.page.MainPage;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
