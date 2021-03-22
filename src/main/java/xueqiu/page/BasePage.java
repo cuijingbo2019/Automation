@@ -1,5 +1,6 @@
 package xueqiu.page;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -15,10 +16,11 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/3/22 15:37
  */
 public class BasePage {
-    AndroidDriver<MobileElement> driver;
+   // AndroidDriver<MobileElement> driver;
+    AppiumDriver<MobileElement> driver;
     WebDriverWait wait;
 
-    public BasePage(AndroidDriver<MobileElement> driver) {
+    public BasePage(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
         wait=new WebDriverWait(driver,10);
     }
@@ -31,6 +33,7 @@ public class BasePage {
         caps.setCapability("appActivity",".view.WelcomeActivityAlias");
         caps.setCapability("noReset","True"); //不重置应用状态
         //caps.setCapability("fillRest","True");//完全重置
+        //caps.setCapability("udid","");
         try {
             driver=new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"),caps);//appium端口号
         } catch (MalformedURLException e) {
@@ -49,8 +52,13 @@ public class BasePage {
     //封装点击方法：等待元素可点击后，进行点击操作
     //todo:异常处理,移动端不需要等待
     public void click(By by){
+
         driver.findElement(by).click();
     }
+
+
+
+
 
     //封装sendkeys 方法，传入点击元素，传入keyword
     //todo:异常处理，移动端不需要等待
@@ -63,5 +71,9 @@ public class BasePage {
         return driver.findElement(by);
     }
 
+    //todo:添加等待
+    public void  waitElement(){
+
+    }
 
 }

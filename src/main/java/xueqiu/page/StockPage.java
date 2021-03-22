@@ -66,22 +66,26 @@ public class StockPage extends BasePage {
     //股票详情页
     public StockPage StockDetail(String name){
         String xapth="//*[@text="+"'"+name+"'"+"]";
-        driver.findElement(By.xpath(xapth)).click();
+        //driver.findElement(By.xpath(xapth)).click();
+        click(By.xpath(xapth));
         return this;
     }
 
     //取消自选
     public StockPage delStock(){
-        driver.findElement(By.xpath("//*[@text='设自选']")).click();
+        //driver.findElement(By.xpath("//*[@text='设自选']")).click();
+        click(By.xpath("//*[@text='设自选']"));
         //todo:添加判断元素出现
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//*[@text='删除自选']")).click();
+       // driver.findElement(By.xpath("//*[@text='删除自选']")).click();
+        click(By.xpath("//*[@text='删除自选']"));
         //返回Stock页面
-        driver.findElement(By.id("com.xueqiu.android:id/action_back")).click();
+        //driver.findElement(By.id("com.xueqiu.android:id/action_back")).click();
+        click(By.xpath("com.xueqiu.android:id/action_back"));
         return this;
     }
 

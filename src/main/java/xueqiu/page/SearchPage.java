@@ -24,7 +24,9 @@ public class SearchPage extends BasePage {
 
     //进入搜索页
     public SearchPage search(String keyword){
-        sendKeys(By.id("com.xueqiu.android:id/search_input_text"),keyword);
+        do {
+            sendKeys(By.id("com.xueqiu.android:id/search_input_text"),keyword);
+        }while (driver.findElements(nameLocator).size()<=0);
        // driver.findElementById("com.xueqiu.android:id/search_input_text").sendKeys(keyword);
         return this;
     }
