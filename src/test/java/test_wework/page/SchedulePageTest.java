@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SchedulePageTest {
     static Wework wework;
-    static SchedulePage SchedulePage;
     @BeforeAll
     static  void beforeAll() {
         wework=new Wework();
@@ -25,11 +24,12 @@ class SchedulePageTest {
     }
 
     @Test
-    void add() {
+    void addSchedule() {
         Assert.assertTrue(wework.Schedule().addSchedule("test",null).getSchedule("null").contains("test"));
     }
 
     @Test
-    void get() {
+    void deleteSchedule() {
+
     }
 }

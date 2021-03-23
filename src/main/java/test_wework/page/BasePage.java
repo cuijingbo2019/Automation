@@ -5,7 +5,9 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.Text;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -43,7 +45,7 @@ public class BasePage {
         caps.setCapability("noReset","true"); //不重置应用状态
         //caps.setCapability("fillRest","True");//完全重置
         //caps.setCapability("udid","");
-        caps.setCapability("dontStopAppOnReset","true");//复用已打开的app
+        //caps.setCapability("dontStopAppOnReset","true");//复用已打开的app
         try {
             driver=new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"),caps);//appium端口号
         } catch (MalformedURLException e) {
@@ -60,7 +62,7 @@ public class BasePage {
     //封装点击方法：等待元素可点击后，进行点击操作
     //todo:异常处理,移动端不需要等待
     public void click(By by){
-
+        wait.until((ExpectedConditions.elementToBeClickable(by)));
         driver.findElement(by).click();
     }
 
@@ -75,8 +77,23 @@ public class BasePage {
     }
 
 
-    public MobileElement findEle(By by){
+    public MobileElement find(By by){
         return driver.findElement(by);
+    }
+    //封装By方法-返回BY.xpath
+    public By bytext(String text){
+        return By.xpath("//*[@text='"+text+"']");
+    }
+
+
+    //通过文本定位-xpath
+    public MobileElement find(String text){
+        return driver.findElement(bytext(text));
+    }
+
+    //文本定位点击
+    public void click(String text){
+        find(text).click();
     }
 
     //todo:添加等待

@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
@@ -52,7 +53,7 @@ public class BasePage {
     //封装点击方法：等待元素可点击后，进行点击操作
     //todo:异常处理,移动端不需要等待
     public void click(By by){
-
+        wait.until((ExpectedConditions.elementToBeClickable(by)));
         driver.findElement(by).click();
     }
 
