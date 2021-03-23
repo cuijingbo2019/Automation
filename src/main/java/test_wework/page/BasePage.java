@@ -18,8 +18,9 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/3/22 15:37
  */
 public class BasePage {
-     String packageName;
-     String activityName;
+    private final int DefailTimeout =60;
+    String packageName;
+    String activityName;
 
     public BasePage(String packageName,String activityName )  {
         this.packageName=packageName;
@@ -33,7 +34,7 @@ public class BasePage {
 
     public BasePage(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
-        wait=new WebDriverWait(driver,10);
+        wait=new WebDriverWait(driver, DefailTimeout);
     }
 
     public void startApp(String packageName,String activityName){
@@ -52,7 +53,7 @@ public class BasePage {
             e.printStackTrace();
         }
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        wait=new WebDriverWait(driver,10);
+        wait=new WebDriverWait(driver,DefailTimeout);
     }
 
     public void quit() {
@@ -62,10 +63,30 @@ public class BasePage {
     //封装点击方法：等待元素可点击后，进行点击操作
     //todo:异常处理,移动端不需要等待
     public void click(By by){
-        wait.until((ExpectedConditions.elementToBeClickable(by)));
-        driver.findElement(by).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by)).click();
     }
 
+    //传入定位方法，查找元素
+    public MobileElement find(By by){
+        return driver.findElement(by);
+    }
+
+
+    //通过文本定，查找元素
+    public MobileElement find(String text){
+        return driver.findElement(bytext(text));
+    }
+
+    //封装By方法-传入文本，返回BY.xpath
+    public By bytext(String text){
+        return By.xpath("//*[@text='"+text+"']");
+    }
+
+
+    //文本定位点击
+    public void click(String text){
+        find(text).click();
+    }
 
 
 
@@ -77,24 +98,12 @@ public class BasePage {
     }
 
 
-    public MobileElement find(By by){
-        return driver.findElement(by);
-    }
-    //封装By方法-返回BY.xpath
-    public By bytext(String text){
-        return By.xpath("//*[@text='"+text+"']");
-    }
 
 
-    //通过文本定位-xpath
-    public MobileElement find(String text){
-        return driver.findElement(bytext(text));
-    }
 
-    //文本定位点击
-    public void click(String text){
-        find(text).click();
-    }
+
+
+
 
     //todo:添加等待
     public void  waitElement(){
