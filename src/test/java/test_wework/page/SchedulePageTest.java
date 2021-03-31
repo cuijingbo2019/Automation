@@ -25,11 +25,22 @@ class SchedulePageTest {
 
     @Test
     void addSchedule() {
-        Assert.assertTrue(wework.Schedule().addSchedule("test",null).getSchedule("null").contains("test"));
+        Assert.assertTrue(
+                wework.Schedule()
+                        .addSchedule("test",null)
+                        .getSchedule("null")
+                        .contains("test")
+        );
     }
 
     @Test
     void deleteSchedule() {
-
+        wework.Schedule()
+                .toScheduleDetail("test")
+                .deleteSchedule();
     }
+
+
+
+
 }

@@ -1,0 +1,32 @@
+name : xx
+description : xxx
+steps :
+  #基本自动化领域模型
+  #业务模型
+#通用方法
+#  - id : locator
+#  - method : click
+#    params : [1,2]
+#    #通用方法参数
+#  - method: click
+#    params :
+#    by : id
+#    value : search
+##简化格式
+#  - by : id
+#    value : search
+#    action : click
+#进一步简化,如果by只是单个的字符串，可以进一步简化
+#  - id : search
+#    action : click
+##输入内容
+#  - id : search
+#    action : sendkeys
+#    text : "cuijingbo"
+#输入可以进行简化
+  - id : search
+    sendKeys : "cuijingbo"
+  - click : {id : search}
+  - id: search
+    action : getText
+    key : search_text
