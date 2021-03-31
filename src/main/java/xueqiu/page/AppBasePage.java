@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test_framwework.BasePage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,17 +17,17 @@ import java.util.concurrent.TimeUnit;
  * @author cuijingbo
  * @date 2021/3/22 15:37
  */
-public class BasePage {
+public class AppBasePage extends BasePage {
    // AndroidDriver<MobileElement> driver;
     AppiumDriver<MobileElement> driver;
     WebDriverWait wait;
 
-    public BasePage(AppiumDriver<MobileElement> driver) {
+    public AppBasePage(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
         wait=new WebDriverWait(driver,10);
     }
 
-    public BasePage()  {
+    public AppBasePage()  {
         DesiredCapabilities caps=new DesiredCapabilities();
         caps.setCapability("platformName","Android");
         caps.setCapability("deviceName","appium");

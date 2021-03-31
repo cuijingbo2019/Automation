@@ -1,20 +1,17 @@
 package xueqiu.page;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author cuijingbo
  * @date 2021/3/16 17:54
  */
-public class SearchPage extends BasePage {
+public class SearchPage extends AppBasePage {
 
     private By nameLocator=By.id("name");
 

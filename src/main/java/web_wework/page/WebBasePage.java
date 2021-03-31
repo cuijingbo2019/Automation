@@ -5,20 +5,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test_framwework.BasePage;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author cuijingbo
  * @date 2021/2/26 16:22
  */
-public class BasePage {
+public class WebBasePage extends BasePage {
 
     RemoteWebDriver driver;
     WebDriverWait wait;
     //封装driver/wait
-    public BasePage() {
+    public WebBasePage() {
         URL path=this.getClass().getResource("/chromedriver.exe");
         System.out.println(path.getPath());
         System.setProperty("webdriver.chrome.driver", path.getPath());
@@ -30,7 +33,7 @@ public class BasePage {
         wait=new WebDriverWait(driver,10);
     }
 
-    public BasePage(RemoteWebDriver driver) {
+    public WebBasePage(RemoteWebDriver driver) {
         this.driver = driver;
         wait=new WebDriverWait(driver,10);
     }
@@ -61,5 +64,38 @@ public class BasePage {
         driver.findElement(by).sendKeys(path);
     }
 
+    @Override
+    public void click(HashMap<String, Object> map) {
+        super.click(map);
+        //把map中所有的key取出来,转成Array，然后取第一个
+        String key= (String) map.keySet().toArray()[0];
+        //把map中所有的value取出来,转成Array，然后取第一个
+        String value= (String) map.values().toArray()[0];
+        By by = null;
+        //tolowercase--转成小写, 字符串相等用equals
+        if (key.toLowerCase().equals("id")){
+            by=By.id(value);
+        }
+        if (key.toLowerCase().equals("linkText".toLowerCase())){
+            by=By.linkText(value);
+        }
 
+        if (key.toLowerCase().equals("partialLinkText".toLowerCase())){
+            by=By.partialLinkText(value);
+        }
+        click(by);
+    }
+
+    //重载 over
+
+
+    @Override
+    public void action(HashMap<String, Object> map) {
+        super.action(map);
+        if(map.get("action").toString().toLowerCase().equals("get")){
+            driver.get(map.get("url").toString());
+        }else {
+            System.out.println("error get");
+        }
+    }
 }

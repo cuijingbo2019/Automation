@@ -13,7 +13,7 @@ import java.net.URLDecoder;
  * @author cuijingbo
  * @date 2021/2/23 18:25
  */
-public class ContactPage extends BasePage {
+public class ContactPage extends WebBasePage {
     By addMembers=By.linkText("添加成员");
     By deleteMember=By.linkText("删除");
     By edit=By.linkText("编辑");

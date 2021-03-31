@@ -1,21 +1,13 @@
 package xueqiu.page;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author cuijingbo
  * @date 2021/3/16 17:52
  */
-public class MainPage extends BasePage {
+public class MainPage extends AppBasePage {
     private AndroidDriver driver;
 
 

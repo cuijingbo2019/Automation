@@ -18,7 +18,7 @@ public class TestSelenium {
     private WebDriver driver;
 
     @Test
-    public void  toSelenium(){
+    public void  testSelenium(){
         //第一步：打开浏览器的debug模式，把浏览器设置为可执行环境变量（可执行文件设置成环境变量）
         ChromeOptions options=new ChromeOptions(); //定义一个optins
         options.setExperimentalOption("debuggerAddre","127.0.0.1:9222");//设置一个参数

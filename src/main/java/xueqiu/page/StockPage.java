@@ -12,7 +12,7 @@ import java.util.List;
  * @author cuijingbo
  * @date 2021/3/19 15:32
  */
-public class StockPage extends BasePage {
+public class StockPage extends AppBasePage {
     public StockPage(AndroidDriver<MobileElement> driver) {
         super(driver);
     }

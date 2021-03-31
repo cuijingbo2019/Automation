@@ -7,7 +7,7 @@ import org.openqa.selenium.Cookie;
  * @author cuijingbo
  * @date 2021/2/23 18:23
  */
-public class MainPage extends BasePage {
+public class MainPage extends WebBasePage {
 
     public MainPage(){
         //todo:登录代码
