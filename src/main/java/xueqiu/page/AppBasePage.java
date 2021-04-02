@@ -11,6 +11,7 @@ import test_framwework.BasePage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -59,9 +60,6 @@ public class AppBasePage extends BasePage {
     }
 
 
-
-
-
     //封装sendkeys 方法，传入点击元素，传入keyword
     //todo:异常处理，移动端不需要等待
     public void sendKeys(By by,String content){
@@ -78,4 +76,9 @@ public class AppBasePage extends BasePage {
 
     }
 
+    @Override
+    public void click(HashMap<String, Object> map) {
+        super.click(map);
+
+    }
 }

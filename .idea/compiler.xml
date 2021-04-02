@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Automation" options="--add-exports java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED" />
+      <module name="Automation" options="" />
     </option>
   </component>
 </project>

@@ -9,7 +9,6 @@ import test_framwework.BasePage;
 
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -65,6 +64,7 @@ public class WebBasePage extends BasePage {
     }
 
     @Override
+    //重载click方法，把yaml文件内容，重写为by类型
     public void click(HashMap<String, Object> map) {
         super.click(map);
         //把map中所有的key取出来,转成Array，然后取第一个
@@ -76,7 +76,8 @@ public class WebBasePage extends BasePage {
         if (key.toLowerCase().equals("id")){
             by=By.id(value);
         }
-        if (key.toLowerCase().equals("linkText".toLowerCase())){
+
+        if ((key.toLowerCase()).equals("linkText".toLowerCase())){
             by=By.linkText(value);
         }
 
@@ -88,14 +89,17 @@ public class WebBasePage extends BasePage {
 
     //重载 over
 
-
     @Override
+    //封装action方法，取出url对应的链接
     public void action(HashMap<String, Object> map) {
         super.action(map);
-        if(map.get("action").toString().toLowerCase().equals("get")){
-            driver.get(map.get("url").toString());
-        }else {
-            System.out.println("error get");
+        if (map.containsKey("action")) {
+            String action = map.get("action").toString().toLowerCase();
+            if (action.equals("get")) {
+                driver.get(map.get("url").toString());
+            } else {
+                System.out.println("error get");
+            }
         }
     }
 }

@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-
 /**
  * @author cuijingbo
  * @date 2021/3/30 19:19
@@ -61,4 +59,12 @@ class BasePageTest {
       ObjectMapper mapper=new ObjectMapper();
       System.out.println(mapper.writeValueAsString(uiauto));
     }
+
+    @Test
+    void runPom(){
+        basePage.loadPages("src/main/resources/test_framwework");
+        UIAuto uiauto =basePage.load("/test_framwework/webauto2.yaml");
+        basePage.run(uiauto);
+    }
+
 }
